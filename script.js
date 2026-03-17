@@ -7,9 +7,9 @@
     const CONFIG = {
         dbKey: 'MOON_DATABASE',
         ui: {
-            p: '#8a2be2',
-            bg: 'linear-gradient(135deg, #000000 0%, #1a0033 100%)',
-            glass: 'rgba(15, 0, 30, 0.9)'
+            p: '#00eaff',
+            bg: 'linear-gradient(135deg, #000814 0%, #001d3d 50%, #003566 100%)',
+            glass: 'rgba(0, 20, 40, 0.85)'
         }
     };
 
@@ -25,48 +25,101 @@
     const injectStyles = () => {
         const s = document.createElement('style');
         s.innerHTML = `
-            @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
-            
-            #_m_loader {
-                position: fixed; inset: 0; background: #000; z-index: 9999999;
-                display: flex; flex-direction: column; justify-content: center; align-items: center;
-                transition: opacity 0.4s ease, filter 0.4s ease;
-            }
-            .m_moon {
-                font-size: 90px; filter: drop-shadow(0 0 25px ${CONFIG.ui.p});
-                animation: m_in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards, m_rot 2s linear infinite;
-            }
-            @keyframes m_in {
-                0% { transform: scale(0) rotate(-180deg); filter: blur(20px); opacity: 0; }
-                100% { transform: scale(1) rotate(0deg); filter: blur(0px); opacity: 1; }
-            }
-            @keyframes m_rot { to { rotate: 360deg; } }
-            
-            .m_title {
-                font-family: 'Orbitron', sans-serif; color: #fff; margin-top: 20px;
-                letter-spacing: 5px; font-weight: 900; text-shadow: 0 0 10px ${CONFIG.ui.p};
-            }
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
 
-            #m_toast_container {
-                position: fixed; top: 20px; right: 20px; z-index: 10000000;
-                display: flex; flex-direction: column; gap: 8px; pointer-events: none;
-            }
-            .m_toast {
-                background: ${CONFIG.ui.glass}; backdrop-filter: blur(12px);
-                border-left: 4px solid ${CONFIG.ui.p}; color: #fff; padding: 14px 20px;
-                min-width: 280px; font-family: 'Orbitron', sans-serif; font-size: 11px;
-                border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-                transform: translateX(130%); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                display: flex; align-items: center; border: 1px solid rgba(138, 43, 226, 0.2);
-            }
-            .m_toast.active { transform: translateX(0); }
-            .m_toast.suc { border-left-color: #00ff88; }
-            .m_toast.err { border-left-color: #ff3333; }
-            
-            html, body { background-color: #000 !important; }
-            ::-webkit-scrollbar { width: 6px; }
-            ::-webkit-scrollbar-thumb { background: ${CONFIG.ui.p}; border-radius: 10px; }
-        `;
+#_m_loader {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #001d3d, #000814);
+    z-index: 9999999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.m_moon {
+    font-size: 110px;
+    color: #00eaff;
+    filter: drop-shadow(0 0 30px #00eaff);
+    animation: m_in 0.6s ease forwards, m_pulse 2s infinite alternate;
+}
+
+@keyframes m_in {
+    0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes m_pulse {
+    from { filter: drop-shadow(0 0 10px #00eaff); }
+    to { filter: drop-shadow(0 0 40px #00eaff); }
+}
+
+.m_title {
+    font-family: 'Orbitron', sans-serif;
+    color: #00eaff;
+    margin-top: 20px;
+    letter-spacing: 6px;
+    font-weight: 900;
+    text-shadow: 0 0 15px #00eaff;
+}
+
+#m_toast_container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.m_toast {
+    background: rgba(0, 10, 25, 0.8);
+    backdrop-filter: blur(14px);
+    border-left: 4px solid #00eaff;
+    color: #e6faff;
+    padding: 14px 20px;
+    min-width: 280px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    border-radius: 8px;
+    box-shadow: 0 0 25px rgba(0, 234, 255, 0.3);
+    transform: translateX(120%) scale(0.9);
+    opacity: 0;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+}
+
+.m_toast.active {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+}
+
+.m_toast.suc {
+    border-left-color: #00ffcc;
+}
+
+.m_toast.err {
+    border-left-color: #ff4d6d;
+}
+
+html, body {
+    background: #000814 !important;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00eaff, #0077b6);
+    border-radius: 10px;
+}
+`;
         document.head.appendChild(s);
     };
 
