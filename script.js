@@ -111,12 +111,12 @@
 
     const modifyItemData = (itemData) => {
         itemData.answerArea = { calculator: false, chi2Table: false, periodicTable: false, tTable: false, zTable: false };
-        itemData.question.content = "**MOON SCRIPTS™ ATIVO**\n\nClique no botão abaixo para concluir.\n\n[[☃ radio 1]]";
+        itemData.question.content = "**NIKOLAS ACADEMY**\n\nClique no botão abaixo para concluir.\n\n[[☃ radio 1]]";
         itemData.question.widgets = {
             "radio 1": {
                 type: "radio", alignment: "default", static: false, graded: true,
                 options: {
-                    choices: [{ content: "Validar Resposta (Moon)", correct: true, id: "correct-choice-" + Date.now() }],
+                    choices: [{ content: "Validar Resposta", correct: true, id: "correct-choice-" + Date.now() }],
                     randomize: false, multipleSelect: false, deselectEnabled: false
                 },
                 version: { major: 1, minor: 0 }
@@ -128,11 +128,11 @@
 
     const modifyResponseData = (itemData) => {
         itemData.answerArea = { calculator: false, chi2Table: false, periodicTable: false, tTable: false, zTable: false };
-        itemData.question.content = "**MOON SCRIPTS™**\n\n✅ **QUESTÃO RESPONDIDA!**\n\nClique no botão abaixo para continuar.\n\n[[☃ radio 1]]";
+        itemData.question.content = "**NIKOLAS SCRIPTS**\n\n✅ **QUESTÃO RESPONDIDA!**\n\nClique no botão abaixo para continuar.\n\n[[☃ radio 1]]";
         itemData.question.widgets = {
             "radio 1": {
                 type: "radio", options: {
-                    choices: [{ content: "✅ Resposta Validada (Moon)", correct: true, id: "response-choice-" + Date.now() }]
+                    choices: [{ content: "✅ Resposta Validada", correct: true, id: "response-choice-" + Date.now() }]
                 }
             }
         };
@@ -164,7 +164,7 @@
                                 let responseItemData = JSON.parse(resData.data.attemptProblem.result.itemData);
                                 modifyResponseData(responseItemData);
                                 resData.data.attemptProblem.result.itemData = JSON.stringify(responseItemData);
-                                notifier.show("✨ SPOOF MANTIDO NA RESPOSTA", "suc");
+                                notifier.show("✨ SCRIPT MANTIDO NA RESPOSTA", "suc");
                                 return new Response(JSON.stringify(resData), { status: res.status, headers: res.headers });
                             }
                         } catch(e) { console.error("Erro ao modificar resposta:", e); }
@@ -209,7 +209,7 @@
                         modifyItemData(itemData);
                         item.itemDataAnswerless = JSON.stringify(itemData);
                         
-                        notifier.show("🌙 SPOOF ATIVADO", "suc");
+                        notifier.show("💎 SCRIPT ATIVADO", "suc");
                         return new Response(JSON.stringify(data), { status: res.status, headers: res.headers });
                     }
                 } catch(e) { notifier.show("ERRO NO SPOOF", "err"); }
@@ -625,7 +625,7 @@
         injectStyles();
         const loader = document.createElement('div');
         loader.id = '_m_loader';
-        loader.innerHTML = `<div class="m_moon">🌙</div><h1 class="m_title">MOON SCRIPTS</h1>`;
+        loader.innerHTML = `<div class="m_moon">⚡</div><h1 class="m_title">NIKOLAS ACADEMY</h1>`;
         document.body.appendChild(loader);
 
         const notifier = new Notifier();
