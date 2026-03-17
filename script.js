@@ -128,7 +128,7 @@
 
     const modifyResponseData = (itemData) => {
         itemData.answerArea = { calculator: false, chi2Table: false, periodicTable: false, tTable: false, zTable: false };
-        itemData.question.content = "**NIKOLAS SCRIPTS**\n\n✅ **QUESTÃO RESPONDIDA!**\n\nClique no botão abaixo para continuar.\n\n[[☃ radio 1]]";
+        itemData.question.content = "**NIKOLAS ACADEMY**\n\n✅ **QUESTÃO RESPONDIDA!**\n\nClique no botão abaixo para continuar.\n\n[[☃ radio 1]]";
         itemData.question.widgets = {
             "radio 1": {
                 type: "radio", options: {
