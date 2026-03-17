@@ -7,7 +7,7 @@ Khan Academy
     window._moon_loaded = true;
 
     const CONFIG = {
-        dbKey: 'MR001_DATABASE',
+        dbKey: 'MOON_DATABASE',
         ui: {
             p: '#8a2be2',
             bg: 'linear-gradient(135deg, #000000 0%, #1a0033 100%)',
@@ -113,12 +113,12 @@ Khan Academy
 
     const modifyItemData = (itemData) => {
         itemData.answerArea = { calculator: false, chi2Table: false, periodicTable: false, tTable: false, zTable: false };
-        itemData.question.content = "**Nikolas Academy**\n\nClique no botão abaixo para concluir.\n\n[[☃ radio 1]]";
+        itemData.question.content = "**NIKOLAS ACADEMY**\n\nClique no botão abaixo para concluir.\n\n[[☃ radio 1]]";
         itemData.question.widgets = {
             "radio 1": {
                 type: "radio", alignment: "default", static: false, graded: true,
                 options: {
-                    choices: [{ content: "Resposta Correta", correct: true, id: "correct-choice-" + Date.now() }],
+                    choices: [{ content: "Validar Resposta", correct: true, id: "correct-choice-" + Date.now() }],
                     randomize: false, multipleSelect: false, deselectEnabled: false
                 },
                 version: { major: 1, minor: 0 }
@@ -130,11 +130,11 @@ Khan Academy
 
     const modifyResponseData = (itemData) => {
         itemData.answerArea = { calculator: false, chi2Table: false, periodicTable: false, tTable: false, zTable: false };
-        itemData.question.content = "**Nikolas Academy**\n\n✅ **QUESTÃO RESPONDIDA!**\n\nClique no botão abaixo para continuar.\n\n[[☃ radio 1]]";
+        itemData.question.content = "**NIKOLAS ACADEMY**\n\n✅ **QUESTÃO RESPONDIDA!**\n\nClique no botão abaixo para continuar.\n\n[[☃ radio 1]]";
         itemData.question.widgets = {
             "radio 1": {
                 type: "radio", options: {
-                    choices: [{ content: "✅ Resposta Correta", correct: true, id: "response-choice-" + Date.now() }]
+                    choices: [{ content: "✅ Resposta Validada", correct: true, id: "response-choice-" + Date.now() }]
                 }
             }
         };
@@ -166,7 +166,7 @@ Khan Academy
                                 let responseItemData = JSON.parse(resData.data.attemptProblem.result.itemData);
                                 modifyResponseData(responseItemData);
                                 resData.data.attemptProblem.result.itemData = JSON.stringify(responseItemData);
-                                notifier.show("Vai Corinthians!", "suc");
+                                notifier.show("✨ SCRIPT MANTIDO NA RESPOSTA", "suc");
                                 return new Response(JSON.stringify(resData), { status: res.status, headers: res.headers });
                             }
                         } catch(e) { console.error("Erro ao modificar resposta:", e); }
@@ -211,7 +211,7 @@ Khan Academy
                         modifyItemData(itemData);
                         item.itemDataAnswerless = JSON.stringify(itemData);
                         
-                        notifier.show("💎 Script Ativado", "suc");
+                        notifier.show("💎 SCRIPT ATIVADO", "suc");
                         return new Response(JSON.stringify(data), { status: res.status, headers: res.headers });
                     }
                 } catch(e) { notifier.show("ERRO NO SCRIPT", "err"); }
@@ -237,8 +237,26 @@ Khan Academy
         }
 
         function canvasFP(){
-  return "fake_fingerprint";
-}
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+
+            ctx.textBaseline="top";
+            ctx.font="14px Arial";
+            ctx.fillStyle="#f60";
+            ctx.fillRect(125,1,62,20);
+            ctx.fillStyle="#069";
+            ctx.fillText("moon-fp",2,15);
+            ctx.fillStyle="rgba(102,204,0,0.7)";
+            ctx.fillText("moon-fp",4,17);
+
+            ctx.globalCompositeOperation="multiply";
+            ctx.fillStyle="rgb(255,0,255)";
+            ctx.beginPath();
+            ctx.arc(50,50,50,0,Math.PI*2,true);
+            ctx.fill();
+
+            return canvas.toDataURL();
+        }
 
 
         function webglFP(){
